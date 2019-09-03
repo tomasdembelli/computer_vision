@@ -20,7 +20,7 @@ python3 capture_cam.py -h
 usage: capture_cam.py [-h] [-c CAM] [-4 FOURC] [-p PATH] [-f FILE] [-x RES]
                       [-r RGB] [-@ FPS] [-a FACE_DETECT] [-e EYE_DETECT]
 
-Press "s" to start recording and "q" for closing the camera. Without arguments
+Press "s" to start recording and "q" to close the camera. Without arguments
 built-in camera will be started and a video file name will be auto generated.
 
 optional arguments:
