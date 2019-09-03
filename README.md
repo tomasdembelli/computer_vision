@@ -13,3 +13,25 @@ Using the `CaptureCam()` object without argument will start built-in webcam and 
 Print "s" to start recording.
 Video will be saved to [working/directory/]Video_2019_09_03_22-49.avi
 ```
+
+`capture_cap.py` can be started from command line.
+```Bash
+python3 capture_cam.py -h
+usage: capture_cam.py [-h] [-c CAM] [-4 FOURC] [-p PATH] [-f FILE] [-x RES]
+                      [-r RGB] [-@ FPS]
+
+Press "s" to start recording and "q" for closing the camera. Without arguments
+built-in camera will be started and a video file name will be auto generated.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -c CAM, --cam CAM     Camera id - default 0
+  -4 FOURC, --fourc FOURC
+                        Codec - default XVID
+  -p PATH, --path PATH  Folder to save camera record.
+  -f FILE, --file FILE  Output file name with the extension.
+  -x RES, --res RES     Resolution - default (640, 480)
+  -r RGB, --rgb RGB     Boolean - default True
+  -@ FPS, --fps FPS     fps - default 20
+
+```
