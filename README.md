@@ -14,7 +14,7 @@ Print "s" to start recording.
 Video will be saved to [working/directory/]Video_2019_09_03_22-49.avi
 ```
 
-Face and Eye detection are turned off by default. Activating eye detection will turn face detection on automatically.
+Face and Eye detection are turned off by default. Activating the eye detection will turn the face detection on automatically.
 ```Python
 >>> from capture_cam import CaptureCam
 >>> session = CaptureCam(face_detect=True, eye_detect=True)
