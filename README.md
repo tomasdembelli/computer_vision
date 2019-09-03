@@ -18,7 +18,7 @@ Video will be saved to [working/directory/]Video_2019_09_03_22-49.avi
 ```Bash
 python3 capture_cam.py -h
 usage: capture_cam.py [-h] [-c CAM] [-4 FOURC] [-p PATH] [-f FILE] [-x RES]
-                      [-r RGB] [-@ FPS]
+                      [-r RGB] [-@ FPS] [-a FACE_DETECT] [-e EYE_DETECT]
 
 Press "s" to start recording and "q" for closing the camera. Without arguments
 built-in camera will be started and a video file name will be auto generated.
@@ -33,5 +33,9 @@ optional arguments:
   -x RES, --res RES     Resolution - default (640, 480)
   -r RGB, --rgb RGB     Boolean - default True
   -@ FPS, --fps FPS     fps - default 20
+  -a FACE_DETECT, --face_detect FACE_DETECT
+                        Face detection - default False.
+  -e EYE_DETECT, --eye_detect EYE_DETECT
+                        Eye detection - default False.
 
 ```
