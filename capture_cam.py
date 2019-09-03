@@ -75,7 +75,10 @@ if __name__ == "__main__":
 
     import argparse
 
-    parser = argparse.ArgumentParser(description='Capture videos.')
+    parser = argparse.ArgumentParser(description='Press "s" to \
+        start recording and "q" for closing the camera.\
+            Without arguments built-in camera will be started and\
+                a video file name will be auto generated.')
     parser.add_argument('-c', '--cam', default=0, type=int,
                         help='Camera id - default 0')
     parser.add_argument('-4', '--fourc', default='XVID', type=str,
