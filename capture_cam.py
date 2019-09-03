@@ -12,7 +12,8 @@ class CaptureCam(object):
     """Capture video and save."""
 
     def __init__(self, cam_id=0, fourcc='XVID', path=os.getcwd(), 
-            file_name=None, res=(640, 480), color=True, fps=20):
+            file_name=None, res=(640, 480), color=True, fps=20, 
+            face_detect=False, eye_detect=False):
         """Capture and store video from a camera.
         
         Keyword arguments:
@@ -23,6 +24,8 @@ class CaptureCam(object):
         res: Resolution (default (640, 480))
         color: RGB if True
         fps: Frame per second (default 20)
+        face_detect: Face detection (default False)
+        eye_detection: Eye detection (default False)
         """
         self.cam_id = cam_id
         self.cap = cv.VideoCapture(self.cam_id)
@@ -40,6 +43,20 @@ class CaptureCam(object):
         self.res = res
         self.color = color
         self.out = False    # Default no recoding.
+        # Eye detection.
+        if eye_detect:
+            self.eye_detect = True
+            face_detect = True
+            self.eye_cascade = cv.CascadeClassifier('./classifiers/haarcascade_eye.xml')
+        else:
+            self.eye_detect = False
+        # Face detection.
+        if face_detect:
+            self.face_cascade = cv.CascadeClassifier('./classifiers/haarcascade_frontalface_default.xml')
+            self.face_detect = True
+        else:
+            self.face_detect = False
+
 
     def capture(self):
         """Capture video."""
@@ -48,6 +65,16 @@ class CaptureCam(object):
         while(self.cap.isOpened()):
             ret, frame = self.cap.read()
             if ret:    # Reading frame is successfull.
+                if self.face_detect:
+                    faces = self.face_cascade.detectMultiScale(frame, 1.3, 5)
+                    gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+                    for (x, y, w, h) in faces:
+                        frame = cv.rectangle(frame, (x, y), (x+w, y+h), (255, 0, 0), 2)
+                        roi_gray = gray[y:y+h, x:x+w]
+                        roi_color = frame[y:y+h, x:x+w]
+                        eyes = self.eye_cascade.detectMultiScale(roi_gray)
+                        for (ex,ey,ew,eh) in eyes:
+                            cv.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
                 cv.imshow(f' Camera {self.cam_id} View', frame)
                 frame_display_duration = 1    # miliseconds
                 k = cv.waitKey(frame_display_duration)
@@ -93,11 +120,16 @@ if __name__ == "__main__":
                         help='Boolean - default True')
     parser.add_argument('-@', '--fps', default=20, type=int,
                         help='fps - default 20')
+    parser.add_argument('-a', '--face_detect', default=False, type=bool,
+                        help='Face detection - default False.')
+    parser.add_argument('-e', '--eye_detect', default=False, type=bool,
+                        help='Eye detection - default False.')
     args = parser.parse_args()
     
     session = CaptureCam(cam_id=args.cam, fourcc=args.fourc, path=args.path, 
                         file_name=args.file, res=args.res, color=args.rgb, 
-                        fps=args.fps)
+                        fps=args.fps, face_detect=args.face_detect, 
+                        eye_detect=args.eye_detect)
     session.capture()
 
 
