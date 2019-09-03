@@ -13,7 +13,17 @@ class CaptureCam(object):
 
     def __init__(self, cam_id=0, fourcc='XVID', path=os.getcwd(), 
             file_name=None, res=(640, 480), color=True, fps=20):
-        """Capture and store video from a camera."""
+        """Capture and store video from a camera.
+        
+        Keyword arguments:
+        cam_id: Id number of camera (default 0)
+        fourc: Codec (default XVID)
+        path: File path (default working directory)
+        file_name: File name (Auto assigned if not provided.)
+        res: Resolution (default (640, 480))
+        color: RGB if True
+        fps: Frame per second (default 20)
+        """
         self.cam_id = cam_id
         self.cap = cv.VideoCapture(self.cam_id)
         if not self.cap.isOpened():
@@ -25,8 +35,6 @@ class CaptureCam(object):
         if not file_name.endswith('.avi'):
             file_name = file_name + '.avi'
         self.file_path = os.path.join(path, file_name)
-        print('Print "s" to start recording.')
-        print(f'Video will be saved to {self.file_path}')
         self.fourCC = cv.VideoWriter_fourcc(*fourcc)
         self.fps = fps
         self.res = res
@@ -35,6 +43,8 @@ class CaptureCam(object):
 
     def capture(self):
         """Capture video."""
+        print('Print "s" to start recording.')
+        print(f'Video will be saved to {self.file_path}')
         while(self.cap.isOpened()):
             ret, frame = self.cap.read()
             if ret:    # Reading frame is successfull.
