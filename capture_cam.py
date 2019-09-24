@@ -60,7 +60,7 @@ class CaptureCam(object):
 
     def capture(self):
         """Capture video."""
-        print('Print "s" to start recording.')
+        print('Press "s" to start recording.')
         print(f'Video will be saved to {self.file_path}')
         while(self.cap.isOpened()):
             ret, frame = self.cap.read()
@@ -105,7 +105,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Press "s" to \
         start recording and "q" for closing the camera.\
             Without arguments built-in camera will be started and\
-                a video file name will be auto generated.')
+                a name for the video file will be auto generated.')
     parser.add_argument('-c', '--cam', default=0, type=int,
                         help='Camera id - default 0')
     parser.add_argument('-4', '--fourc', default='XVID', type=str,
