@@ -3,14 +3,14 @@ Image and video processing with Python.
 
 #### Examples
 
-A connected camera can be turned on and a footage can be recorded.
+Recording a video footage via webcam or other connected device.
 
 Using the `CaptureCam()` object without argument will start built-in webcam and auto assign a name for the video.
 ```Python
 >>> from capture_cam import CaptureCam
 >>> session = CaptureCam()
 >>> session.capture()
-Print "s" to start recording.
+Press "s" to start recording.
 Video will be saved to [working/directory/]Video_2019_09_03_22-49.avi
 ```
 
@@ -19,7 +19,7 @@ Face and Eye detection are turned off by default. Activating the eye detection w
 >>> from capture_cam import CaptureCam
 >>> session = CaptureCam(face_detect=True, eye_detect=True)
 >>> session.capture()
-Print "s" to start recording.
+Press "s" to start recording.
 Video will be saved to [working/directory/]Video_2019_09_03_22-49.avi
 ```
 
@@ -31,7 +31,7 @@ usage: capture_cam.py [-h] [-c CAM] [-4 FOURC] [-p PATH] [-f FILE] [-x RES]
                       [-r RGB] [-@ FPS] [-a FACE_DETECT] [-e EYE_DETECT]
 
 Press "s" to start recording and "q" to close the camera. Without arguments
-built-in camera will be started and a video file name will be auto generated.
+built-in camera will be started and a name for the video file will be auto generated.
 
 optional arguments:
   -h, --help            show this help message and exit
